@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcgfh15tundhw"]
+
+[ext_resource type="Script" uid="uid://cb5gfe71g7l35" path="res://main_menu.gd" id="1_ri4gx"]
+[ext_resource type="Texture2D" uid="uid://ch1wxebdydrwu" path="res://assets/images/background.png" id="2_mkokp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hbq1l"]
+texture = ExtResource("2_mkokp")
+modulate_color = Color(0.589096, 0.589096, 0.589096, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gy2y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6se7t"]
+bg_color = Color(0.703808, 0.703808, 0.703808, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 4
+shadow_offset = Vector2(0, 3.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2lmj"]
+bg_color = Color(0.389287, 0.389287, 0.389287, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 4
+shadow_offset = Vector2(0, 3.4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8s0k"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 4
+shadow_offset = Vector2(0, 3.4)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ri4gx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hbq1l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -195.0
+offset_right = 231.0
+offset_bottom = -30.0
+grow_vertical = 0
+theme_override_constants/separation = 9
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../QuitButton")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3gy2y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6se7t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g2lmj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c8s0k")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3gy2y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6se7t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g2lmj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c8s0k")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../StartButton")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3gy2y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6se7t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g2lmj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_c8s0k")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,156 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfoxlcbt5hord"]
+
+[ext_resource type="Script" uid="uid://crutl74htjp34" path="res://player_paddle.gd" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://hu0ubtu4g3ry" path="res://game.gd" id="1_wrm1d"]
+[ext_resource type="Script" uid="uid://lt4r065m6srk" path="res://ball.gd" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://bo1wwpep630xo" path="res://player_paddle_2.gd" id="3_3dryh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2poj3"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(128, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
+size = Vector2(129, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dryh"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wowpa"]
+size = Vector2(16, 16)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_wrm1d")
+
+[node name="ArenaElements" type="Node" parent="."]
+
+[node name="Background" type="ColorRect" parent="ArenaElements"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="MidLine" type="ColorRect" parent="ArenaElements"]
+z_index = 1
+offset_left = 571.0
+offset_right = 581.0
+offset_bottom = 648.0
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="ScoreBoard" type="HBoxContainer" parent="ArenaElements"]
+offset_right = 1152.0
+offset_bottom = 165.0
+alignment = 1
+
+[node name="PlayerOneScore" type="Label" parent="ArenaElements/ScoreBoard"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.776471, 0.2, 0.32549, 1)
+theme_override_font_sizes/font_size = 120
+text = "0"
+
+[node name="Space" type="Label" parent="ArenaElements/ScoreBoard"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.590266, 0.596654, 3.85046e-07, 0.92549)
+theme_override_font_sizes/font_size = 120
+text = " "
+
+[node name="PlayerTwoScore" type="Label" parent="ArenaElements/ScoreBoard"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.777701, 0.201614, 0.326847, 1)
+theme_override_font_sizes/font_size = 120
+text = "0"
+
+[node name="Borders" type="StaticBody2D" parent="ArenaElements"]
+
+[node name="TopBorder" type="CollisionShape2D" parent="ArenaElements/Borders"]
+shape = SubResource("WorldBoundaryShape2D_2poj3")
+
+[node name="BottomBorder" type="CollisionShape2D" parent="ArenaElements/Borders"]
+position = Vector2(0, 648)
+shape = SubResource("WorldBoundaryShape2D_ebmjs")
+
+[node name="LeftGoal" type="Area2D" parent="ArenaElements"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaElements/LeftGoal"]
+position = Vector2(-64, 324)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="RightGoal" type="Area2D" parent="ArenaElements"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaElements/RightGoal"]
+position = Vector2(1216.5, 324)
+shape = SubResource("RectangleShape2D_wrm1d")
+
+[node name="PlayerPaddle" type="StaticBody2D" parent="."]
+top_level = true
+position = Vector2(128, 264)
+script = ExtResource("1_ebmjs")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerPaddle"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle"]
+shape = SubResource("RectangleShape2D_3dryh")
+
+[node name="PlayerPaddle2" type="StaticBody2D" parent="."]
+top_level = true
+position = Vector2(1024, 340)
+script = ExtResource("3_3dryh")
+
+[node name="ColorRect" type="ColorRect" parent="PlayerPaddle2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle2"]
+shape = SubResource("RectangleShape2D_3dryh")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+top_level = true
+position = Vector2(576, 324)
+script = ExtResource("2_qxrlw")
+
+[node name="TextureRect" type="ColorRect" parent="Ball"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_wowpa")
+
+[node name="BallSpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="ArenaElements/LeftGoal" to="." method="_on_left_goal_body_entered"]
+[connection signal="body_entered" from="ArenaElements/RightGoal" to="." method="_on_right_goal_body_entered"]
+[connection signal="timeout" from="BallSpawnTimer" to="." method="_on_ball_spawn_timer_timeout"]

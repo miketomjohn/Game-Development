@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg0cbnl1fhwtk"]
+
+[ext_resource type="Texture2D" uid="uid://bwf5i0qyei8n0" path="res://Assets/background-day.png" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://01qecvy1saj3" path="res://Scenes/ground.tscn" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://dfdmjtlf55plu" path="res://Scenes/pipe_spawner.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://dx4ul4mtah2dg" path="res://Scenes/bird.tscn" id="4_kry3j"]
+
+[node name="Main" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-144, -256)
+texture = ExtResource("1_bo1nx")
+centered = false
+
+[node name="Ground" parent="." instance=ExtResource("3_8gbba")]
+position = Vector2(-144, 200)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PipeSpawner" parent="." instance=ExtResource("4_jjvhh")]
+
+[node name="Bird" parent="." instance=ExtResource("4_kry3j")]
