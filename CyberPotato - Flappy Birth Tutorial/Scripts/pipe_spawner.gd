@@ -8,14 +8,15 @@ signal point_scored
 var pipe_pair_scene = preload("res://Scenes/pipe_pair.tscn")
 
 @export var pipe_speed = -150
+
 @onready var spawn_timer: Timer = $SpawnTimer
 
 func _ready():
-	spawn_timer.timeout.connect(spawn_pipe)
+	spawn_timer.start()
 	
 
 func start_spawning_pipes():
-	spawn_timer.start()
+	spawn_timer.timeout.connect(spawn_pipe)
 	
 
 func spawn_pipe():
@@ -30,6 +31,7 @@ func spawn_pipe():
 	
 	pipe.bird_entered.connect(on_bird_entered)
 	pipe.point_scored.connect(on_point_scored)
+	pipe.set_speed(pipe_speed)
 	
 
 func on_bird_entered():

@@ -127,6 +127,7 @@ shape = SubResource("RectangleShape2D_3dryh")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 top_level = true
+z_index = 1
 position = Vector2(576, 324)
 script = ExtResource("2_qxrlw")
 
@@ -144,6 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+top_level = true
 shape = SubResource("RectangleShape2D_wowpa")
 
 [node name="BallSpawnTimer" type="Timer" parent="."]
